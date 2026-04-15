@@ -2,43 +2,19 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
+import { Navbar } from './components/Navbar';
+import { Outlet } from 'react-router-dom';
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-export const App = () => {
-  return (
-    <>
-      <nav
-        className="navbar is-light is-fixed-top is-mobile has-shadow"
-        data-cy="Nav"
-      >
-        <div className="container">
-          <div className="navbar-brand">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `navbar-item ${isActive ? 'is-active' : ''}`
-              }
-            >
-              Home
-            </NavLink>
 
-            <NavLink
-              to="/tabs"
-              className={({ isActive }) =>
-                `navbar-item ${isActive ? 'is-active' : ''}`
-              }
-            >
-              Tabs
-            </NavLink>
-          </div>
-        </div>
-      </nav>
+export const App = () => (
+  <>
+    {/* Also requires  */}
+    <Navbar />
 
-      <div className="section">
-        <div className="container">
-          <Outlet />
-        </div>
+    <div className="section">
+      <div className="container">
+        <Outlet />
       </div>
-    </>
-  );
-};
+    </div>
+  </>
+);

@@ -1,11 +1,15 @@
 import { Link, useParams } from 'react-router-dom';
+import { Tab } from '../types/Tab';
+import classNames from 'classnames';
 import React from 'react';
-import { tabs } from '../data/tabs-data';
 
-export const TabsPage = () => {
+type Props = {
+  tabs: Tab[];
+};
+export const TabsPage = ({ tabs }: Props) => {
   const { tabId } = useParams();
 
-  const activeTab = tabs.find(tab => tab.id === tabId);
+  const selectedTab = tabs.find(tab => tab.id === tabId);
 
   return (
     <>
@@ -16,18 +20,16 @@ export const TabsPage = () => {
             <li
               key={tab.id}
               data-cy="Tab"
-              className={tab.id === tabId ? 'is-active' : ''}
+              className={classNames({ 'is-active': tab.id === tabId })}
             >
-              <Link to={`/tabs/${tab.id}`} data-cy="TabLink">
-                {tab.title}
-              </Link>
+              <Link to={`/tabs/${tab.id}`}>{tab.title}</Link>
             </li>
           ))}
         </ul>
       </div>
 
       <div className="block" data-cy="TabContent">
-        {activeTab ? activeTab.content : 'Please select a tab'}
+        {selectedTab ? selectedTab.content : 'Please select a tab'}
       </div>
     </>
   );

@@ -1,9 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import React from 'react';
 import { Root } from './Root';
+import React from 'react';
 
-createRoot(document.getElementById('root') as HTMLElement).render(
-  <html className="has-navbar-fixed-top">
-    <Root />
-  </html>,
-);
+createRoot(document.getElementById('root') as HTMLElement).render(<Root />);
